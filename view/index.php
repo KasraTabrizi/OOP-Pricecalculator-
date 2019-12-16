@@ -8,6 +8,10 @@
     <title>Price Calculator</title>
 </head>
 
+<?php 
+    require '../model/model.php';
+?>
+
 <body>
     <form action="" method="POST">
         <!-- Customer Dropdown -->
@@ -25,7 +29,7 @@
             <option value="audi">Audi</option>
         </select>
         <!-- Calculate Button -->
-        <input type="submit" value="">
+        <input type="submit" value="calculate" name="calculate">
     </form>
     <!-- Price Table -->
     <table></table>

@@ -12,15 +12,15 @@ class Customer{
         $this->groupId = $groupId;
     }
 
-    public getId(){
+    public function getId(){
         return $this->id; 
     }
 
-    public getName(){
+    public function getName(){
         return $this->name;
     }
 
-    public getGroupId(){
+    public function getGroupId(){
         return $this->groupId;
     }
 
@@ -40,62 +40,56 @@ class Product{
         $this->price = $price;
     }
 
-    public getId(){
+    public function getId(){
         return $this->id; 
     }
 
-    public getName(){
+    public function getName(){
         return $this->name;
     }
 
-    public getDescription(){
+    public function getDescription(){
         return $this->description;
     }
 
-    public getPrice(){
+    public function getPrice(){
         return $this->price;
     }
 }
 
 //CLASS DEPARTEMENT
-class Departement{
+class Department{
     private $id;
     private $name;
-    private $description;
     private $discountType;
     private $discountValue;
     private $groupId;   
 
-    public function __construct($id, $name, $description, $discountType, $discountValue, $groupId){
+    public function __construct($id, $name, $discountType, $discountValue, $groupId){
         $this->id = $id;
         $this->name = $name;
-        $this->description = $description;
         $this->discountType = $discountType;
         $this->discountValue = $discountValue;
         $this->groupId = $groupId;
     }
 
-    public getId(){
+    public function getId(){
         return $this->id; 
     }
 
-    public getName(){
+    public function getName(){
         return $this->name;
     }
 
-    public getDescription(){
-        return $this->description;
-    }
-
-    public getDiscountType(){
+    public function getDiscountType(){
         return $this->discountType;
     }
 
-    public getDiscountValue(){
+    public function getDiscountValue(){
         return $this->discountValue;
     }
 
-    public getGroupId(){
+    public function getGroupId(){
         return $this->groupId;
     }
 }
@@ -104,35 +98,29 @@ class Departement{
 class Company{
     private $id;
     private $name;
-    private $description;
     private $discountType;
     private $discountValue; 
 
-    public function __construct($id, $name, $description, $discountType, $discountValue){
+    public function __construct($id, $name, $discountType, $discountValue){
         $this->id = $id;
         $this->name = $name;
-        $this->description = $description;
         $this->discountType = $discountType;
         $this->discountValue = $discountValue;
     }
 
-    public getId(){
+    public function getId(){
         return $this->id; 
     }
 
-    public getName(){
+    public function getName(){
         return $this->name;
     }
-
-    public getDescription(){
-        return $this->description;
-    }
-
-    public getDiscountType(){
+    
+    public function getDiscountType(){
         return $this->discountType;
     }
 
-    public getDiscountValue(){
+    public function getDiscountValue(){
         return $this->discountValue;
     }
 }
