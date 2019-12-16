@@ -16,10 +16,12 @@
     <form action="" method="POST">
         <!-- Customer Dropdown -->
         <select>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+            <?php 
+                foreach($customers as $customer){
+                    echo "<option value='name'>".$customer->getName()."</option>";
+                    //var_dump("<option value=/'$customer->name/'>$customer->name</option>");
+                }
+            ?>
         </select>
         <!-- Products Dropdown -->
         <select>

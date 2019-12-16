@@ -48,10 +48,10 @@
                 array_push($departments, new Department($group->id, $group->name, 'variable', $group->variable_discount, $group->group_id));
             }
             elseif(property_exists($group, 'fixed_discount')){
-                array_push($departments, new Department($group->id, $group->name, 'fixed', $group->variable_discount, $group->group_id));
+                array_push($departments, new Department($group->id, $group->name, 'fixed', $group->fixed_discount, $group->group_id));
             }
         }
     }
 
-    var_dump($company);
+    //var_dump($company);
 ?>
