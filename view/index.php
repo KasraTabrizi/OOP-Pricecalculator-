@@ -18,7 +18,7 @@
         <select>
             <?php 
                 foreach($customers as $customer){
-                    echo "<option value='name'>".$customer->getName()."</option>";
+                    echo "<option value='name'>" . $customer->getName() . "</option>";
                 }
             ?>
         </select>
@@ -26,7 +26,7 @@
         <select>
             <?php 
                 foreach($products as $product){
-                    echo "<option value='name'>".$product->getName()."</option>";
+                    echo "<option value='name'>" . $product->getName() . "</option>";
                 }
             ?>
         </select>
