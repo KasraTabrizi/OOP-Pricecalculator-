@@ -15,18 +15,18 @@
 <body>
     <form action="" method="POST">
         <!-- Customer Dropdown -->
-        <select>
+        <select name="custormer_dropdown"> 
             <?php 
                 foreach($customers as $customer){
-                    echo "<option value='name'>" . $customer->getName() . "</option>";
+                    echo "<option value=".$customer->getId().">".$customer->getName()."</option>";
                 }
             ?>
         </select>
         <!-- Products Dropdown -->
-        <select>
+        <select name="product_dropdown"> 
             <?php 
                 foreach($products as $product){
-                    echo "<option value='name'>" . $product->getName() . "</option>";
+                    echo "<option value=".$product->getId().">".$product->getName()."</option>";
                 }
             ?>
         </select>
