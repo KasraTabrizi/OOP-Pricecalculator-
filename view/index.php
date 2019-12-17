@@ -15,7 +15,7 @@
 <body>
     <form action="" method="POST">
         <!-- Customer Dropdown -->
-        <select name="custormer_dropdown"> 
+        <select name="customer_dropdown"> 
             <?php 
                 foreach($customers as $customer){
                     echo "<option value=".$customer->getId().">".$customer->getName()."</option>";
