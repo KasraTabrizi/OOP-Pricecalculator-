@@ -6,7 +6,7 @@
     function createTable($retrievedData){
         var_dump($retrievedData);
 
-        
+
     }
 
     //CALCULATE THE PRICE OF THE PRODUCT FOR EACH DISCOUNT
@@ -47,6 +47,7 @@
         return $retrievedData;
     }
 
+    //PROCESS DATA OUT OF THE OBJECTS AND PUT IT INTO AN ARRAY FOR THE CALCULATIONS
     function processData($customers, $products, $groups, $departments, $companies, $customer, $product, $amount){
         $retrievedData = array();
         $loop = true;
@@ -127,7 +128,4 @@
             }
         }
     }
-
-    //var_dump($customers);
-
 ?>
