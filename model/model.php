@@ -3,37 +3,94 @@
     require 'classes.php';
 
     //CREATE TABLE AND SEND TO THE VIEW
-    function createTable($retrievedData){
+    function createTable($retrievedData, $companies){
         var_dump($retrievedData);
+        echo "<tr><th colspan='2'>Customer</th>";
+        //echo "<th colspan='2'>".$retrievedData[0]."</th>";
+        foreach($retrievedData as $key => $value){
+            if($value === 'amount'){
+                break;
+            }
+            if($key > 0 && !is_numeric($value)){ //if is true if key is equal or greater than 1 AND $value is not a number
+                if(($value !== 'variable') && ($value !== 'fixed')){
+                    foreach($companies as $company){
+                        if($value === $company->getName()){
+                            echo "<th colspan='2'>".$value."</th>";
+                            break;
+                        }
+                        else{
+                            echo "<th colspan='2'>Departement</th>";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        echo "<th colspan='2'>Product</th> 
+              <th colspan='2'>Prices</th>
+              </tr>";
+        echo "<tr>
+              <td>Name</td>
+              <td>".$retrievedData[0]."</td>";
+        
+        foreach($retrievedData as $key => $value){
+            if($value === 'amount'){
+            break;
+            }
+            if($key > 0 && !is_numeric($value)){ //if is true if key is equal or greater than 1 AND $value is not a number
+                if(($value !== 'variable') && ($value !== 'fixed')){
+                    echo "<td>Name</td>";
+                    echo "<td>".$value."</td>";
+                }
+            }
+        }
 
-
+        echo "<td>Price for 1 Unit</td>";
+        echo "<td>".$retrievedData[1]."</td>";
+        echo "</tr>";
     }
 
     //CALCULATE THE PRICE OF THE PRODUCT FOR EACH DISCOUNT
     function calculatePrice($retrievedData){
         $discountAboveTenUnits = 0.9;
         $priceMoreUnits;
-        $priceProduct = end($retrievedData); //last item is always the price of the product
+        $priceProduct = $retrievedData['productPrice']; 
+        $counter = 0;
+        //var_dump($priceProduct);
         $priceOneUnit = $priceProduct;
         foreach($retrievedData as $key => $value){
-            if($value == 'fixed'){
-                $priceOneUnit -= $retrievedData[++$key];
+            if($value == 'fixed' && $key == "department".$counter."DiscountType"){
+                $priceOneUnit -= $retrievedData["department".$counter."DiscountValue"];
+                var_dump($retrievedData["department".$counter."DiscountValue"]);
             }
+            elseif($value == 'fixed' && $key == 'companyDiscountType'){
+                $priceOneUnit -= $retrievedData['companyDiscountValue'];
+                var_dump($retrievedData['companyDiscountValue']);
+            }
+            else{
+                ++$counter;
+            } 
         }
+        $counter = 0;
         foreach($retrievedData as $key => $value){
-            if($value == 'variable'){
-                $priceOneUnit *= (100 - $retrievedData[++$key]) / 100;
+            if($value == 'variable' && $key == "department".$counter."DiscountType"){
+                $priceOneUnit *= (100 - $retrievedData["department".$counter."DiscountValue"]) / 100;
+                $counter++;
+            }
+            elseif($value == 'variable' && $key == 'companyDiscountType'){
+                $priceOneUnit *= (100 - $retrievedData['companyDiscountValue']) / 100;
             }
         }
         if($priceOneUnit <= 0){
                $priceOneUnit = 0;     
         }
-        array_push($retrievedData, 'priceOneUnit');
-        array_push($retrievedData, round($priceOneUnit, 2));
+        $retrievedData['priceOneUnit'] = round($priceOneUnit, 2);
+        // array_push($retrievedData, 'priceOneUnit');
+        // array_push($retrievedData, round($priceOneUnit, 2));
 
         foreach($retrievedData as $key => $value){
-            if($value == 'amount'){
-                $value = $retrievedData[++$key];
+            if($key === 'amount'){
+                $value = $retrievedData['amount'];
                 if($value >= 10){
                     $priceOneUnit = ($priceOneUnit * $discountAboveTenUnits) * $value ;
                 }
@@ -42,27 +99,67 @@
                 }
             }
         }
-        array_push($retrievedData, 'priceMoreUnits');
-        array_push($retrievedData, round($priceOneUnit, 2));
+        $retrievedData['priceMoreUnits'] = round($priceOneUnit, 2);
+        // array_push($retrievedData, 'priceMoreUnits');
+        // array_push($retrievedData, round($priceOneUnit, 2));
+        var_dump($retrievedData);
         return $retrievedData;
     }
+
+    //PROCESS DATA OUT OF THE OBJECTS AND PUT IT INTO AN ARRAY FOR THE CALCULATIONS
+    // function processData($customers, $products, $groups, $departments, $companies, $customer, $product, $amount){
+    //     $retrievedData = array();
+    //     $loop = true;
+    //     //var_dump($customers);
+    //     array_push($retrievedData, $customers[intval($customer)]->getName()); //push customer name in array
+    //     $customerGroupId = $customers[intval($customer)]->getGroupId(); //get group ID of customer
+    //     // var_dump($customerGroupId);
+    //     // var_dump($departments);
+    //     while($loop){ //this loop checks in which departments the customer is in and in which company the departement is
+    //         if($customerGroupId == 0 || $customerGroupId == 12 || $customerGroupId == 16 || $customerGroupId == 20 || $customerGroupId == 32 || $customerGroupId == 35 || $customerGroupId == 38){
+    //             foreach($companies as $company){
+    //                 if($company->getId() == $customerGroupId){
+    //                     array_push($retrievedData, $company->getName());
+    //                     array_push($retrievedData, $company->getDiscountType());
+    //                     array_push($retrievedData, $company->getDiscountValue());
+    //                 }
+    //             }
+    //             $loop = false;
+    //         }
+    //         else{
+    //             foreach($departments as $department){
+    //                 if($department->getId() == $customerGroupId){
+    //                     array_push($retrievedData, $department->getName());
+    //                     array_push($retrievedData, $department->getDiscountType());
+    //                     array_push($retrievedData, $department->getDiscountValue());
+    //                     $customerGroupId = $department->getGroupId();
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     array_push($retrievedData, 'amount');
+    //     array_push($retrievedData, intval($amount));
+    //     array_push($retrievedData, $products[intval($product)]->getName());
+    //     array_push($retrievedData, $products[intval($product)]->getDescription());
+    //     array_push($retrievedData, $products[intval($product)]->getPrice());
+        
+    //     return calculatePrice($retrievedData); //return the array
+    // }
 
     //PROCESS DATA OUT OF THE OBJECTS AND PUT IT INTO AN ARRAY FOR THE CALCULATIONS
     function processData($customers, $products, $groups, $departments, $companies, $customer, $product, $amount){
         $retrievedData = array();
         $loop = true;
-        //var_dump($customers);
-        array_push($retrievedData, $customers[intval($customer)]->getName()); //push customer name in array
+        $counter = 0;
+        $retrievedData['customerName'] = $customers[intval($customer)]->getName();
         $customerGroupId = $customers[intval($customer)]->getGroupId(); //get group ID of customer
-        // var_dump($customerGroupId);
-        // var_dump($departments);
         while($loop){ //this loop checks in which departments the customer is in and in which company the departement is
             if($customerGroupId == 0 || $customerGroupId == 12 || $customerGroupId == 16 || $customerGroupId == 20 || $customerGroupId == 32 || $customerGroupId == 35 || $customerGroupId == 38){
                 foreach($companies as $company){
                     if($company->getId() == $customerGroupId){
-                        array_push($retrievedData, $company->getName());
-                        array_push($retrievedData, $company->getDiscountType());
-                        array_push($retrievedData, $company->getDiscountValue());
+                        $retrievedData['companyName'] = $company->getName();
+                        $retrievedData['companyDiscountType'] = $company->getDiscountType();
+                        $retrievedData['companyDiscountValue'] = $company->getDiscountValue();
                     }
                 }
                 $loop = false;
@@ -70,22 +167,28 @@
             else{
                 foreach($departments as $department){
                     if($department->getId() == $customerGroupId){
-                        array_push($retrievedData, $department->getName());
-                        array_push($retrievedData, $department->getDiscountType());
-                        array_push($retrievedData, $department->getDiscountValue());
+                        $retrievedData["department".$counter."Name"] = $department->getName();
+                        $retrievedData["department".$counter."DiscountType"] = $department->getDiscountType();
+                        $retrievedData["department".$counter."DiscountValue"] = $department->getDiscountValue();
                         $customerGroupId = $department->getGroupId();
+                        $counter++;
                     }
                 }
             }
         }
-        array_push($retrievedData, 'amount');
-        array_push($retrievedData, intval($amount));
-        array_push($retrievedData, $products[intval($product)]->getName());
-        array_push($retrievedData, $products[intval($product)]->getDescription());
-        array_push($retrievedData, $products[intval($product)]->getPrice());
+        $retrievedData['amount'] = intval($amount);
+        $retrievedData['productName'] = $products[intval($product)]->getName();
+        $retrievedData['productDescription'] = $products[intval($product)]->getDescription();
+        $retrievedData['productPrice'] = $products[intval($product)]->getPrice();
         
         return calculatePrice($retrievedData); //return the array
     }
+
+
+
+
+
+
 
     //DECODE JSON FILES
     //DECODE CUSTOMERS.JSON

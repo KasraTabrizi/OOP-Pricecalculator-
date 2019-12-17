@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Price Calculator</title>
+    <style>
+            table, th, td {
+        border: 1px solid black;
+        }
+    </style>
 </head>
 
 <?php 
@@ -37,8 +42,9 @@
     </form>
     <!-- Price Table -->
     <table>
+    <caption>Pricing Table</caption>
     <?php 
-        createTable($retrievedData);
+        // createTable($retrievedData, $companies);
     ?>
     </table>
 </body>
