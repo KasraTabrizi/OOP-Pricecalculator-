@@ -31,6 +31,7 @@
                 }
             ?>
         </select>
+        <!-- INPUT TEXT FOR AMOUNT -->
         <input type="text" name="amount" id="" placeholder="amount">
         <!-- Calculate Button -->
         <input type="submit" value="calculate" name="calculate">
