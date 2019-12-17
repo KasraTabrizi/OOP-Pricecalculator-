@@ -10,6 +10,7 @@
 
 <?php 
     require '../model/model.php';
+    require '../controller/controller.php';
 ?>
 
 <body>
