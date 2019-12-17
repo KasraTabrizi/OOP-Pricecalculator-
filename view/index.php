@@ -31,11 +31,13 @@
                 }
             ?>
         </select>
+        <input type="text" name="amount" id="" placeholder="amount">
         <!-- Calculate Button -->
         <input type="submit" value="calculate" name="calculate">
     </form>
     <!-- Price Table -->
-    <table></table>
+    <table>
+    </table>
 </body>
 
 </html>

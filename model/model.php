@@ -4,7 +4,7 @@
 
     //CREATE TABLE AND SEND TO THE VIEW
     function createTable(){
-
+        var_dump($_POST);
     }
 
     //CALCULATE THE PRICE OF THE PRODUCT FOR EACH DISCOUNT
