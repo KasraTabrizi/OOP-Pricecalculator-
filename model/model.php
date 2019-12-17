@@ -3,13 +3,48 @@
     require 'classes.php';
 
     //CREATE TABLE AND SEND TO THE VIEW
-    function createTable(){
-        var_dump($customers);
+    function createTable($retrievedData){
+        var_dump($retrievedData);
+
+        
     }
 
     //CALCULATE THE PRICE OF THE PRODUCT FOR EACH DISCOUNT
-    function calculatePrice($customer, $product, $amount){
-        var_dump($customers);
+    function calculatePrice($retrievedData){
+        $discountAboveTenUnits = 0.9;
+        $priceMoreUnits;
+        $priceProduct = end($retrievedData); //last item is always the price of the product
+        $priceOneUnit = $priceProduct;
+        foreach($retrievedData as $key => $value){
+            if($value == 'fixed'){
+                $priceOneUnit -= $retrievedData[++$key];
+            }
+        }
+        foreach($retrievedData as $key => $value){
+            if($value == 'variable'){
+                $priceOneUnit *= (100 - $retrievedData[++$key]) / 100;
+            }
+        }
+        if($priceOneUnit <= 0){
+               $priceOneUnit = 0;     
+        }
+        array_push($retrievedData, 'priceOneUnit');
+        array_push($retrievedData, round($priceOneUnit, 2));
+
+        foreach($retrievedData as $key => $value){
+            if($value == 'amount'){
+                $value = $retrievedData[++$key];
+                if($value >= 10){
+                    $priceOneUnit = ($priceOneUnit * $discountAboveTenUnits) * $value ;
+                }
+                else{
+                    $priceOneUnit *= $value ;
+                }
+            }
+        }
+        array_push($retrievedData, 'priceMoreUnits');
+        array_push($retrievedData, round($priceOneUnit, 2));
+        return $retrievedData;
     }
 
     function processData($customers, $products, $groups, $departments, $companies, $customer, $product, $amount){
@@ -42,8 +77,13 @@
                 }
             }
         }
-
-        return $retrievedData; //return the array
+        array_push($retrievedData, 'amount');
+        array_push($retrievedData, intval($amount));
+        array_push($retrievedData, $products[intval($product)]->getName());
+        array_push($retrievedData, $products[intval($product)]->getDescription());
+        array_push($retrievedData, $products[intval($product)]->getPrice());
+        
+        return calculatePrice($retrievedData); //return the array
     }
 
     //DECODE JSON FILES

@@ -37,6 +37,9 @@
     </form>
     <!-- Price Table -->
     <table>
+    <?php 
+        createTable($retrievedData);
+    ?>
     </table>
 </body>
 
