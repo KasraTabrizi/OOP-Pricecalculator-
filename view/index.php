@@ -16,35 +16,37 @@
 ?>
 
 <body>
-    <form action="" method="POST">
-        <!-- Customer Dropdown -->
-        <select name="customer_dropdown"> 
-            <?php 
-                foreach($customers as $customer){
-                    echo "<option value=".$customer->getId().">".$customer->getName()."</option>";
-                }
-            ?>
-        </select>
-        <!-- Products Dropdown -->
-        <select name="product_dropdown"> 
-            <?php 
-                foreach($products as $product){
-                    echo "<option value=".$product->getId().">".$product->getName()."</option>";
-                }
-            ?>
-        </select>
-        <!-- INPUT TEXT FOR AMOUNT -->
-        <input type="text" name="amount" id="" placeholder="amount">
-        <!-- Calculate Button -->
-        <input type="submit" value="calculate" name="calculate">
-    </form>
-    <!-- Price Table -->
-    <table id="customers">
-    <caption>Pricing Table</caption>
-    <?php 
-        createTable($retrievedData, $companies);
-    ?>
-    </table>
+    <div id="wrapper">
+        <form action="" method="POST">
+            <!-- Customer Dropdown -->
+            <select class="dropdown" name="customer_dropdown"> 
+                <?php 
+                    foreach($customers as $customer){
+                        echo "<option value=".$customer->getId().">".$customer->getName()."</option>";
+                    }
+                ?>
+            </select>
+            <!-- Products Dropdown -->
+            <select class="dropdown" name="product_dropdown"> 
+                <?php 
+                    foreach($products as $product){
+                        echo "<option value=".$product->getId().">".$product->getName()."</option>";
+                    }
+                ?>
+            </select>
+            <!-- INPUT TEXT FOR AMOUNT -->
+            <input type="text" name="amount" id="" placeholder="amount">
+            <!-- Calculate Button -->
+            <input type="submit" value="calculate" name="calculate">
+        </form>
+        <!-- Price Table -->
+        <table id="customers">
+        <caption>Pricing Table</caption>
+        <?php 
+            createTable($retrievedData, $companies);
+        ?>
+        </table>
+    </div>
 </body>
 
 </html>

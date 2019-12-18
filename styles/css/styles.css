@@ -1,23 +1,48 @@
-#customers {
+#wrapper {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+}
+#wrapper select {
+  outline: 0;
+  background: rgba(76, 175, 79, 0.664);
+  background-image: none;
+  color: black;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+#wrapper .select {
+  width: 15em;
+  height: 2em;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 0.25em;
+  padding-bottom: 10px;
+}
+#wrapper #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  margin-top: 50px;
 }
-
-#customers td, #customers th {
+#wrapper #customers caption {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+#wrapper #customers td,
+#wrapper #customers th {
   border: 1px solid #ddd;
   padding: 8px;
 }
-
-#customers tr:nth-child(even) {
+#wrapper #customers tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-
-#customers tr:hover {
+#wrapper #customers tr:hover {
   background-color: #ddd;
 }
-
-#customers th {
+#wrapper #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

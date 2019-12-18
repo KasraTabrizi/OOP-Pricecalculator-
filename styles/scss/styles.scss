@@ -1,22 +1,59 @@
-#customers {
-font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-border-collapse: collapse;
-width: 100%;
+#wrapper{
+    width: 60%;
+    margin:0 auto;
+    text-align: center;
+    margin-top: 50px;
+
+    select { 
+        outline: 0; 
+        background: rgba(76, 175, 79, 0.664);
+        background-image: none; 
+        color: black; 
+        cursor: pointer; 
+        border:1px solid black; 
+        border-radius:3px; 
+    } 
+    .select { 
+        width: 15em; 
+        height: 2em; 
+        line-height: 3; 
+        overflow: hidden; 
+        border-radius: .25em; 
+        padding-bottom:10px; 
+    } 
+    
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 50px; 
+    
+        caption{
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        td,
+        th{
+        border: 1px solid #ddd;
+        padding: 8px;
+        }
+        
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #ddd;
+        }
+        
+        th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+        }
+    }
 }
 
-#customers td, #customers th {
-border: 1px solid #ddd;
-padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-padding-top: 12px;
-padding-bottom: 12px;
-text-align: left;
-background-color: #4CAF50;
-color: white;
-}
