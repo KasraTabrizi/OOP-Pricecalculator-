@@ -55,7 +55,6 @@
         $discountAboveTenUnits = 0.9;
         $priceMoreUnits;
         $priceProduct = $retrievedData['productPrice']; 
-        $counter = 0;
         //var_dump($priceProduct);
         $priceOneUnit = $priceProduct;
         foreach($retrievedData as $key => $value){
@@ -69,16 +68,15 @@
                 var_dump($retrievedData[$next]);
             }
         } 
-        $counter = 0;
         foreach($retrievedData as $key => $value){
-            if($value == 'variable' && $key == "department".$counter."DiscountType"){
-                $priceOneUnit *= (100 - $retrievedData["department".$counter."DiscountValue"]) / 100;
-                var_dump($retrievedData["department".$counter."DiscountValue"]);
-                $counter++;
-            }
-            elseif($value == 'variable' && $key == 'companyDiscountType'){
+            if($value == 'variable' && $key == 'companyDiscountType'){
                 $priceOneUnit *= (100 - $retrievedData['companyDiscountValue']) / 100;
                 var_dump($retrievedData['companyDiscountValue']);
+            }
+            elseif($value == 'variable'){
+                $next = str_replace("Type", "Value", $key);
+                $priceOneUnit *= (100 - $retrievedData[$next]) / 100;
+                var_dump($retrievedData[$next]);
             }
         }
         if($priceOneUnit <= 0){
