@@ -6,7 +6,6 @@
     function createTable($retrievedData, $companies){
         var_dump($retrievedData);
         echo "<tr><th colspan='2'>Customer</th>";
-        //echo "<th colspan='2'>".$retrievedData[0]."</th>";
         foreach($retrievedData as $key => $value){
             if($value === 'amount'){
                 break;
@@ -55,28 +54,23 @@
         $discountAboveTenUnits = 0.9;
         $priceMoreUnits;
         $priceProduct = $retrievedData['productPrice']; 
-        //var_dump($priceProduct);
         $priceOneUnit = $priceProduct;
         foreach($retrievedData as $key => $value){
             if($value == 'fixed' && $key == 'companyDiscountType'){
                 $priceOneUnit -= $retrievedData['companyDiscountValue'];
-                var_dump($retrievedData['companyDiscountValue']);
             }
             elseif($value == 'fixed'){
                 $next = str_replace("Type", "Value", $key);
                 $priceOneUnit -= $retrievedData[$next];
-                var_dump($retrievedData[$next]);
             }
         } 
         foreach($retrievedData as $key => $value){
             if($value == 'variable' && $key == 'companyDiscountType'){
                 $priceOneUnit *= (100 - $retrievedData['companyDiscountValue']) / 100;
-                var_dump($retrievedData['companyDiscountValue']);
             }
             elseif($value == 'variable'){
                 $next = str_replace("Type", "Value", $key);
                 $priceOneUnit *= (100 - $retrievedData[$next]) / 100;
-                var_dump($retrievedData[$next]);
             }
         }
         if($priceOneUnit <= 0){
