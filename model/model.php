@@ -5,38 +5,20 @@
     //CREATE TABLE AND SEND TO THE VIEW
     function createTable($retrievedData, $companies){
         var_dump($retrievedData);
-        echo "<tr><th colspan='2'>Customer</th>";
+        //echo "<tr><th colspan='2'>Customer</th>";
+
         foreach($retrievedData as $key => $value){
-            if($value === 'amount'){
-                break;
-            }
-            if($key > 0 && !is_numeric($value)){ //if is true if key is equal or greater than 1 AND $value is not a number
-                if(($value !== 'variable') && ($value !== 'fixed')){
-                    foreach($companies as $company){
-                        if($value === $company->getName()){
-                            echo "<th colspan='2'>".$value."</th>";
-                            break;
-                        }
-                        else{
-                            echo "<th colspan='2'>Departement</th>";
-                            break;
-                        }
-                    }
-                }
+            if(strpos($key, 'Name')){
+                $piece = str_replace("Name", "", $key);
+                echo "<th colspan='2'>".ucfirst($piece)."</th>";
             }
         }
-        echo "<th colspan='2'>Product</th> 
-              <th colspan='2'>Prices</th>
-              </tr>";
-        echo "<tr>
-              <td>Name</td>
-              <td>".$retrievedData[0]."</td>";
-        
+ 
+        echo "<th colspan='2'>Prices</th>
+              </tr><tr>";
+
         foreach($retrievedData as $key => $value){
-            if($value === 'amount'){
-            break;
-            }
-            if($key > 0 && !is_numeric($value)){ //if is true if key is equal or greater than 1 AND $value is not a number
+            if(!is_numeric($value) && $key != 'productDescription'){ 
                 if(($value !== 'variable') && ($value !== 'fixed')){
                     echo "<td>Name</td>";
                     echo "<td>".$value."</td>";
@@ -45,7 +27,22 @@
         }
 
         echo "<td>Price for 1 Unit</td>";
-        echo "<td>".$retrievedData[1]."</td>";
+        echo "<td>".$retrievedData['priceOneUnit']."</td>";
+        echo "</tr><tr><td></td><td></td>";
+        
+        $key = array_keys($retrievedData);
+        for($i = 0; $i < count($retrievedData) ; $i++){
+            //var_dump($key[$i]);
+            if($retrievedData[$key[$i]] == 'variable'){ 
+                echo "<td>Discount</td>";
+                echo "<td>".$retrievedData[$key[$i + 1]]."%</td>";
+            }
+            if($retrievedData[$key[$i]] == 'fixed'){ 
+                echo "<td>Discount</td>";
+                echo "<td>".$retrievedData[$key[$i + 1]]."&euro;</td>";
+            }
+        }
+
         echo "</tr>";
     }
 
@@ -90,7 +87,6 @@
             }
         }
         $retrievedData['priceMoreUnits'] = round($priceOneUnit, 2);
-        var_dump($retrievedData);
         return $retrievedData;
     }
 
@@ -171,12 +167,6 @@
         
         return calculatePrice($retrievedData); //return the array
     }
-
-
-
-
-
-
 
     //DECODE JSON FILES
     //DECODE CUSTOMERS.JSON

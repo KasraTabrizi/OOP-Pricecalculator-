@@ -44,7 +44,7 @@
     <table>
     <caption>Pricing Table</caption>
     <?php 
-        // createTable($retrievedData, $companies);
+        createTable($retrievedData, $companies);
     ?>
     </table>
 </body>
