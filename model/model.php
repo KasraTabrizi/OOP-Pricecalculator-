@@ -29,7 +29,7 @@
         echo "<td>Price for 1 Unit</td>";
         echo "<td>".$retrievedData['priceOneUnit']."</td>";
         echo "</tr><tr><td></td><td></td>";
-        
+
         $key = array_keys($retrievedData);
         for($i = 0; $i < count($retrievedData) ; $i++){
             //var_dump($key[$i]);
@@ -42,8 +42,12 @@
                 echo "<td>".$retrievedData[$key[$i + 1]]."&euro;</td>";
             }
         }
-
+        echo "<td>Description</td><td>".$retrievedData['productDescription']."</td>";
+        echo "<td>Amount</td><td>".$retrievedData['amount']."</td>";
         echo "</tr>";
+        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td>";
+        echo "<td>Price</td><td>".$retrievedData['productPrice']."</td><td>Discount per peice for 10 or more Units</td><td>10%</td></tr>";
+        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Price with amount discount</td><td>".$retrievedData['priceMoreUnits']."</td></tr>";
     }
 
     //CALCULATE THE PRICE OF THE PRODUCT FOR EACH DISCOUNT
