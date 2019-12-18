@@ -7,9 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Price Calculator</title>
     <style>
-            table, th, td {
-        border: 1px solid black;
-        }
+        <?php include '../styles/css/styles.css'; ?>
     </style>
 </head>
 
@@ -41,7 +39,7 @@
         <input type="submit" value="calculate" name="calculate">
     </form>
     <!-- Price Table -->
-    <table>
+    <table id="customers">
     <caption>Pricing Table</caption>
     <?php 
         createTable($retrievedData, $companies);

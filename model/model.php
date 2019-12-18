@@ -4,9 +4,6 @@
 
     //CREATE TABLE AND SEND TO THE VIEW
     function createTable($retrievedData, $companies){
-        var_dump($retrievedData);
-        //echo "<tr><th colspan='2'>Customer</th>";
-
         foreach($retrievedData as $key => $value){
             if(strpos($key, 'Name')){
                 $piece = str_replace("Name", "", $key);
