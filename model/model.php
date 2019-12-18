@@ -59,34 +59,32 @@
         //var_dump($priceProduct);
         $priceOneUnit = $priceProduct;
         foreach($retrievedData as $key => $value){
-            if($value == 'fixed' && $key == "department".$counter."DiscountType"){
-                $priceOneUnit -= $retrievedData["department".$counter."DiscountValue"];
-                var_dump($retrievedData["department".$counter."DiscountValue"]);
-            }
-            elseif($value == 'fixed' && $key == 'companyDiscountType'){
+            if($value == 'fixed' && $key == 'companyDiscountType'){
                 $priceOneUnit -= $retrievedData['companyDiscountValue'];
                 var_dump($retrievedData['companyDiscountValue']);
             }
-            else{
-                ++$counter;
-            } 
-        }
+            elseif($value == 'fixed'){
+                $next = str_replace("Type", "Value", $key);
+                $priceOneUnit -= $retrievedData[$next];
+                var_dump($retrievedData[$next]);
+            }
+        } 
         $counter = 0;
         foreach($retrievedData as $key => $value){
             if($value == 'variable' && $key == "department".$counter."DiscountType"){
                 $priceOneUnit *= (100 - $retrievedData["department".$counter."DiscountValue"]) / 100;
+                var_dump($retrievedData["department".$counter."DiscountValue"]);
                 $counter++;
             }
             elseif($value == 'variable' && $key == 'companyDiscountType'){
                 $priceOneUnit *= (100 - $retrievedData['companyDiscountValue']) / 100;
+                var_dump($retrievedData['companyDiscountValue']);
             }
         }
         if($priceOneUnit <= 0){
                $priceOneUnit = 0;     
         }
         $retrievedData['priceOneUnit'] = round($priceOneUnit, 2);
-        // array_push($retrievedData, 'priceOneUnit');
-        // array_push($retrievedData, round($priceOneUnit, 2));
 
         foreach($retrievedData as $key => $value){
             if($key === 'amount'){
@@ -100,8 +98,6 @@
             }
         }
         $retrievedData['priceMoreUnits'] = round($priceOneUnit, 2);
-        // array_push($retrievedData, 'priceMoreUnits');
-        // array_push($retrievedData, round($priceOneUnit, 2));
         var_dump($retrievedData);
         return $retrievedData;
     }
