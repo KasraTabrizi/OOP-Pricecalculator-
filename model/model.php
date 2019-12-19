@@ -30,12 +30,12 @@
 
         $key = array_keys($retrievedData);
         for($i = 0; $i < count($retrievedData) ; $i++){
-            //var_dump($key[$i]);
-            if($retrievedData[$key[$i]] == 'variable'){ 
+            var_dump($retrievedData[$key[$i]] == 'variable');
+            if($retrievedData[$key[$i]] === 'variable'){ 
                 echo "<td>Discount</td>";
                 echo "<td>".$retrievedData[$key[$i + 1]]."%</td>";
             }
-            if($retrievedData[$key[$i]] == 'fixed'){ 
+            if($retrievedData[$key[$i]] === 'fixed'){ 
                 echo "<td>Discount</td>";
                 echo "<td>".$retrievedData[$key[$i + 1]]."&euro;</td>";
             }
@@ -43,9 +43,26 @@
         echo "<td>Description</td><td>".$retrievedData['productDescription']."</td>";
         echo "<td>Amount</td><td>".$retrievedData['amount']."</td>";
         echo "</tr>";
-        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td>";
+        echo "<tr>";
+        foreach($retrievedData as $key => $value){
+            if($key == 'amount'){
+            break;
+            }
+            if(strpos($key, 'Name')){
+                echo "<td></td><td></td>";
+            }
+        }
         echo "<td>Price</td><td>".$retrievedData['productPrice']."</td><td>Discount per peice for 10 or more Units</td><td>10%</td></tr>";
-        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Price with amount discount</td><td>".$retrievedData['priceMoreUnits']."</td></tr>";
+        echo "<tr>";
+        foreach($retrievedData as $key => $value){
+            if($key == 'product'){
+            break;
+            }
+            if(strpos($key, 'Name')){
+                echo "<td></td><td></td>";
+            }
+        }
+        echo "<td>Price with amount discount</td><td>".$retrievedData['priceMoreUnits']."</td></tr>";
     }
 
     //CALCULATE THE PRICE OF THE PRODUCT FOR EACH DISCOUNT
