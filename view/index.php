@@ -18,8 +18,7 @@
 <body>
     <div id="wrapper">
         <form action="" method="POST">
-            <input type="text" name="" id="">
-            <input type="text" name="" id="">
+            <input type="text" name="customerName" id="">
             <input type="submit" value="Login" name="login">
             <input type="submit" value="Create Account" name="registration">
         </form>
