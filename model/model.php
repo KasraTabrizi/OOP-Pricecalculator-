@@ -30,7 +30,6 @@
 
         $key = array_keys($retrievedData);
         for($i = 0; $i < count($retrievedData) ; $i++){
-            var_dump($retrievedData[$key[$i]] == 'variable');
             if($retrievedData[$key[$i]] === 'variable'){ 
                 echo "<td>Discount</td>";
                 echo "<td>".$retrievedData[$key[$i + 1]]."%</td>";
