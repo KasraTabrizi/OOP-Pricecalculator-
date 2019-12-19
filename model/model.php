@@ -146,6 +146,21 @@
         return calculatePrice($retrievedData); //return the array
     }
 
+
+    function nameFound($loginName){
+        $found = false;
+
+        $jsonString = file_get_contents('../customers.json');
+        $jsonDecode = json_decode($jsonString);
+
+        foreach($jsonDecode as $customer){
+            if($customer->name === $loginName){
+                $found = true;
+            }
+        }
+        return $found;
+    }
+
     //DECODE JSON FILES
     //DECODE CUSTOMERS.JSON
     $jsonString = file_get_contents('../customers.json');

@@ -5,10 +5,14 @@
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if(isset($_POST['login'])){
-
+        if(nameFound($_POST['customerName'])){
+            header("Location: home.php");
+        }else{
+            header("Location: index.php");
+        }
     }
 
-    if(isset($_POST['calculate'])){
+    if(isset($_POST['registration'])){
         
     }
         
