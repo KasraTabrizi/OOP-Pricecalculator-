@@ -12,7 +12,7 @@
 </head>
 
 <?php 
-    //require '../controller/controller.php'; 
+    require '../controller/controller.php'; 
 ?>
 
 <body>
