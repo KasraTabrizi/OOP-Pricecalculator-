@@ -4,6 +4,15 @@
 //DETECT IF THE CALCULATE BUTTON HAS BEEN PRESSED
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
+    if(isset($_POST['login'])){
+
+    }
+
+    if(isset($_POST['calculate'])){
+        
+    }
+        
+
     if(isset($_POST['calculate'])){
         $customer = $_POST['customer_dropdown'];
         $product = $_POST['product_dropdown'];
