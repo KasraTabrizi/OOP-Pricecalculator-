@@ -109,46 +109,6 @@
     }
 
     //PROCESS DATA OUT OF THE OBJECTS AND PUT IT INTO AN ARRAY FOR THE CALCULATIONS
-    // function processData($customers, $products, $groups, $departments, $companies, $customer, $product, $amount){
-    //     $retrievedData = array();
-    //     $loop = true;
-    //     //var_dump($customers);
-    //     array_push($retrievedData, $customers[intval($customer)]->getName()); //push customer name in array
-    //     $customerGroupId = $customers[intval($customer)]->getGroupId(); //get group ID of customer
-    //     // var_dump($customerGroupId);
-    //     // var_dump($departments);
-    //     while($loop){ //this loop checks in which departments the customer is in and in which company the departement is
-    //         if($customerGroupId == 0 || $customerGroupId == 12 || $customerGroupId == 16 || $customerGroupId == 20 || $customerGroupId == 32 || $customerGroupId == 35 || $customerGroupId == 38){
-    //             foreach($companies as $company){
-    //                 if($company->getId() == $customerGroupId){
-    //                     array_push($retrievedData, $company->getName());
-    //                     array_push($retrievedData, $company->getDiscountType());
-    //                     array_push($retrievedData, $company->getDiscountValue());
-    //                 }
-    //             }
-    //             $loop = false;
-    //         }
-    //         else{
-    //             foreach($departments as $department){
-    //                 if($department->getId() == $customerGroupId){
-    //                     array_push($retrievedData, $department->getName());
-    //                     array_push($retrievedData, $department->getDiscountType());
-    //                     array_push($retrievedData, $department->getDiscountValue());
-    //                     $customerGroupId = $department->getGroupId();
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     array_push($retrievedData, 'amount');
-    //     array_push($retrievedData, intval($amount));
-    //     array_push($retrievedData, $products[intval($product)]->getName());
-    //     array_push($retrievedData, $products[intval($product)]->getDescription());
-    //     array_push($retrievedData, $products[intval($product)]->getPrice());
-        
-    //     return calculatePrice($retrievedData); //return the array
-    // }
-
-    //PROCESS DATA OUT OF THE OBJECTS AND PUT IT INTO AN ARRAY FOR THE CALCULATIONS
     function processData($customers, $products, $groups, $departments, $companies, $customer, $product, $amount){
         $retrievedData = array();
         $loop = true;
