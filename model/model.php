@@ -4,6 +4,7 @@
 
     //CREATE TABLE AND SEND TO THE VIEW
     function createTable($retrievedData, $companies){
+        echo "<caption>Pricing Table</caption>";
         foreach($retrievedData as $key => $value){
             if(strpos($key, 'Name')){
                 $piece = str_replace("Name", "", $key);

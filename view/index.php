@@ -41,9 +41,10 @@
         </form>
         <!-- Price Table -->
         <table id="customers">
-        <caption>Pricing Table</caption>
         <?php 
-            createTable($retrievedData, $companies);
+            if(isset($retrievedData)){
+                createTable($retrievedData, $companies);
+            }  
         ?>
         </table>
     </div>
