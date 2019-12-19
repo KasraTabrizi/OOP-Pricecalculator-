@@ -161,6 +161,15 @@
         return $found;
     }
 
+
+    function addAccount($loginName){
+        $jsonString = file_get_contents('../customers.json');
+        $jsonDecode = json_decode($jsonString);
+        $jsonDecode[] = ['id' => count($jsonDecode), 'name' => $loginName];
+        $jsonData = json_encode($jsonDecode);
+        file_put_contents('../customers.json', $jsonData);
+    }
+
     //DECODE JSON FILES
     //DECODE CUSTOMERS.JSON
     $jsonString = file_get_contents('../customers.json');

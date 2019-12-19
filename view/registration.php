@@ -18,9 +18,9 @@
 <body>
     <div id="wrapper">
         <form action="" method="POST">
-            <input type="text" name="" id="">
-            <input type="text" name="" id="">
-            <input type="submit" value="Register" name="registration">
+            <input type="text" name="name" id="">
+            <!-- <input type="text" name="" id=""> -->
+            <input type="submit" value="Register" name="register">
         </form>
     </div>
 </body>
