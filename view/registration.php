@@ -20,8 +20,7 @@
         <form action="" method="POST">
             <input type="text" name="" id="">
             <input type="text" name="" id="">
-            <input type="submit" value="Login" name="login">
-            <input type="submit" value="Create Account" name="registration">
+            <input type="submit" value="Register" name="registration">
         </form>
     </div>
 </body>
