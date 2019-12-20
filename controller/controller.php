@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         }
     }
 
-    if(isset($_POST['registration'])){
+    if(isset($_POST['createAccount'])){
         header("Location: registration.php");
     }
 
