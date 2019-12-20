@@ -4,6 +4,24 @@
     text-align: center;
     margin-top: 50px;
 
+    input[type=submit]{
+        outline: 0; 
+        background: rgba(76, 175, 79, 0.664);
+        background-image: none;
+        border:1px solid black; 
+        border-radius:3px; 
+        color: white;
+        transition: 0.2s ease;
+        cursor: pointer;
+
+
+        &:hover{
+            transform: translateY(3px);
+        }
+
+    }
+
+
     select { 
         outline: 0; 
         background: rgba(76, 175, 79, 0.664);
