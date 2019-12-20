@@ -162,10 +162,10 @@
     }
 
 
-    function addAccount($loginName){
+    function addAccount($loginName, $groupID){
         $jsonString = file_get_contents('../customers.json');
         $jsonDecode = json_decode($jsonString);
-        $jsonDecode[] = ['id' => count($jsonDecode), 'name' => $loginName];
+        $jsonDecode[] = ['id' => count($jsonDecode), 'name' => $loginName, 'group_id' => $groupID];
         $jsonData = json_encode($jsonDecode);
         file_put_contents('../customers.json', $jsonData);
     }

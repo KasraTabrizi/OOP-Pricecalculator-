@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     }
 
     if(isset($_POST['register'])){
-        addAccount($_POST['name']);
+        addAccount($_POST['name'], $_POST['department_dropdown']);
     }
         
 
