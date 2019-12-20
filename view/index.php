@@ -18,7 +18,7 @@
 <body>
     <div id="wrapper">
         <form action="" method="POST">
-            <input type="text" name="customerName" id="">
+            <input type="text" name="customerName" id="" <?php echo alertMessage(); ?>>
             <input type="submit" value="Login" name="login">
             <input type="submit" value="Create Account" name="createAccount">
         </form>

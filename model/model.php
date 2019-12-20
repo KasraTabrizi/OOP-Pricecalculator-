@@ -170,6 +170,10 @@
         file_put_contents('../customers.json', $jsonData);
     }
 
+    function alertMessage(){
+        return 'placeholder="Username doesn\'t exist"';
+    }
+
     //DECODE JSON FILES
     //DECODE CUSTOMERS.JSON
     $jsonString = file_get_contents('../customers.json');

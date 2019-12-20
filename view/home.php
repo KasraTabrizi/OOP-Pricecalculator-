@@ -37,7 +37,9 @@
             <!-- INPUT TEXT FOR AMOUNT -->
             <input type="text" name="amount" id="" placeholder="amount">
             <!-- Calculate Button -->
-            <input type="submit" value="calculate" name="calculate">
+            <input type="submit" value="Calculate" name="calculate">
+            <!-- Logout Button -->
+            <input type="submit" value="Log Out" name="logout" >
         </form>
         <!-- Price Table -->
         <table id="customers">

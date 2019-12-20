@@ -19,8 +19,11 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     if(isset($_POST['register'])){
         addAccount($_POST['name'], $_POST['department_dropdown']);
     }
-        
 
+    if(isset($_POST['logout'])){
+        header("Location: index.php");
+    }
+        
     if(isset($_POST['calculate'])){
         $customer = $_POST['customer_dropdown'];
         $product = $_POST['product_dropdown'];

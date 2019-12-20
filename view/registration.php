@@ -29,7 +29,10 @@
                 <option value="13">Communication</option>
                 <option value="18">IT-Department</option>
             </select>
+            <!-- Registration Button -->
             <input type="submit" value="Register" name="register">
+            <!-- Logout Button -->
+            <input type="submit" value="Back" name="logout">
         </form>
     </div>
 </body>
